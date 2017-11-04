@@ -34,7 +34,7 @@ class Game
       slovo = slovo.encode('UTF-8')
     end
 
-    UnicodeUtils.upcase(slovo).split('')
+    slovo.upcase.split('')
   end
 
   # Метод, который просто возвращает константу MAX_ERRORS
@@ -99,7 +99,7 @@ class Game
   # Старый метод, который продвигает состояние игры на следующий ход
   def next_step(letter)
     # Поднимаем букву в верхний регистр
-    letter = UnicodeUtils.upcase(letter)
+    letter = letter.upcase
 
     # Вываливаемся, если игра уже закончена
     return if @status == :lost || @status == :won
