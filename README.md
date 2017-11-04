@@ -1,9 +1,8 @@
 # Game viselitsa v4.0
 **Wrote on ruby**
 
-To run the programm just type in your command line
-      **`viselitsa.rb`** 
-
+To run the programm just type in your command line:
+      $ viselitsa.rb 
 If you want add some new words to the game, go to folder
       `data` 
 and in file
