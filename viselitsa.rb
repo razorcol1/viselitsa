@@ -1,26 +1,32 @@
-# Подключаем классы Game, ResultPrinter и WordReader
-require_relative "game"
-require_relative "result_printer"
-require_relative "word_reader"
+# encoding: utf-8
+#
+# Популярная детская игра, Виселица
+# https://ru.wikipedia.org/wiki/Виселица_(игра)
 
-puts "Игра виселица. Версия 3. (c) goodprogrammer.ru\n\n"
-sleep 1
+require 'unicode_utils/upcase'
 
-printer = ResultPrinter.new
+require_relative 'lib/game'
+require_relative 'lib/result_printer'
+require_relative 'lib/word_reader'
 
-# Создаем экземпляр класса Word который мы будет использовать для
-# вывода информации на экран.
+# Записываем версию игры в константу VERSION
+VERSION = 'Игра виселица, версия 5. (c) Хороший программист'
+
+# Создаем экземпляр класса WordReader
 word_reader = WordReader.new
+words_file_name = "#{File.dirname(__FILE__)}/data/words.txt"
+word = word_reader.read_from_file(words_file_name)
 
-# Соберем путь к файлу со словами из пути к файлу, где лежит программа и
-# относительно пути к файлу words.txt.
-words_file_name = File.dirname(__FILE__) + "/data/words.txt"
+# Создаем игру и прописываем ее версию с помощью сеттера version=
+game = Game.new(word)
+game.version = VERSION
 
-# Создаем объект класса Game, вызывая конструктор и передавая ему слово, которое
-# вернет метод read_from_file экземпляра класса WordReader.
-game = Game.new(word_reader.read_from_file(words_file_name))
+# Теперь экземпляр ResultPrinter-а нельзя создать без игры
+# Именно поэтому порядо создания методов именно такой
+printer = ResultPrinter.new(game)
 
-while game.status == 0
+# Основной игровой цикл остался прежним
+while game.in_progress?
   printer.print_status(game)
   game.ask_next_letter
 end
