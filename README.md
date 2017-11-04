@@ -1,4 +1,4 @@
-# game viselitsa v2.0
+# Game viselitsa v4.0
 **Wrote on ruby**
 
 To run the programm just type **`viselitsa.rb`** in your command line
