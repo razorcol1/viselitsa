@@ -1,7 +1,5 @@
-
 class Game
   attr_reader :errors, :letters, :good_letters, :bad_letters, :status
-
   attr_accessor :version
 
   MAX_ERRORS = 7
